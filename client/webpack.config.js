@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const path = require('path');
 const { InjectManifest } = require('workbox-webpack-plugin');
@@ -16,17 +17,29 @@ module.exports = () => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        title: 'Hot Module Reloading',
         template: './index.html',
+        title: 'Webpack Plugin'
       }),
+      new MiniCssExtractPlugin(),
       new InjectManifest({
-        swSrc: './src-sw.js',
+        swSrc: '/src-sw.js',
         swDest: 'service-worker.js',
       }), 
       new WebpackPwaManifest({
-        name: 'Text-Editor-Application',
-        short_name: 'Text-App',
-        description: 'Text Editor PWA',
+        name: 'Jate',
+        short_name: 'Jate',
+        description: 'Create notes or code snippets',
+        background_color: '#272822',
+        theme_color: '#272822',
+        start_url: './',
+        publicPath: './',
+        icons: [
+          {
+            src: path.resolve('src/images/logo.png'),
+            sizes: [96, 128, 192, 256, 384, 512],
+            destination: path.join('assets', 'icons'),
+          },
+        ],
       }),
     ],
 
@@ -34,7 +47,11 @@ module.exports = () => {
       rules: [
         {
           test: /\.css$/i,
-          use: ['style-loader', 'css-loader'],
+          use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        },
+        {
+          test: /\.(png|svg|jpg|jpeg|gif)$/i,
+          type: 'asset/resource',
         },
         {
           test: /\.m?js$/,
@@ -42,9 +59,9 @@ module.exports = () => {
           use: {
             loader: 'babel-loader',
             options: {
-              presets: ['@babel/preset-env']
-            }
-          }
+              presets: ['@babel/preset-env'],
+            },
+          },
         },
       ],
     },

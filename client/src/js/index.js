@@ -1,10 +1,14 @@
 import { Workbox } from 'workbox-window';
 import Editor from './editor';
+import jateImg from '../images/logo.png';
 import './database';
 import '../css/style.css';
 
 const main = document.querySelector('#main');
 main.innerHTML = '';
+
+const jateLogo = document.getElementById('jateImg');
+jateLogo.src = jateImg;
 
 const loadSpinner = () => {
   const spinner = document.createElement('div');
