@@ -18,19 +18,21 @@ module.exports = () => {
     plugins: [
       new HtmlWebpackPlugin({
         template: './index.html',
-        title: 'Webpack Plugin'
+        title: 'Webpack Plugin',
       }),
       new MiniCssExtractPlugin(),
       new InjectManifest({
-        swSrc: '/src-sw.js',
-        swDest: 'service-worker.js',
-      }), 
+        swSrc: './src-sw.js',
+        swDest: 'src-sw.js',
+      }),
       new WebpackPwaManifest({
-        name: 'Jate',
-        short_name: 'Jate',
-        description: 'Create notes or code snippets',
-        background_color: '#272822',
-        theme_color: '#272822',
+        fingerprints: false,
+        inject: true,
+        name: 'J.A.T.E',
+        short_name: 'J.A.T.E',
+        description: 'Write and save your notes and code!',
+        background_color: '#225ca3',
+        theme_color: '#225ca3',
         start_url: './',
         publicPath: './',
         icons: [
@@ -42,7 +44,6 @@ module.exports = () => {
         ],
       }),
     ],
-
     module: {
       rules: [
         {
