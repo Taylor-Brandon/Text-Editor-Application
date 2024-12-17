@@ -88,3 +88,5 @@ Special thanks to Columbia Bootcamps for providing the educational resources nec
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Demo
+
+Find the Live application here: [Demo](https://text-editor-app-74b27f1d557f.herokuapp.com/)
